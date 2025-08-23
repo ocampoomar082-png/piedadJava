@@ -16,23 +16,22 @@ tools {
         }
       }
     
-          stage('Unit-test') {
+      stage('Unit-test') {
       steps {
         dir('frontend') {
           bat 'npm run test'
         }
-      
-	  
-	  
-	  }
-	  stage('build') {
+      }
+    }
+	
+	 stage('build') {
       steps {
         dir('frontend') {
           script {
-		   bat 'npm run build'
-          
-            
-              
+		  
+		   sh 'npm run build'
+           
+           
             }
           }
          
@@ -40,6 +39,6 @@ tools {
       }
     
     
-	}//Fin stages
-}//Fin Pipeline
+}
+}
 
