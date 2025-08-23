@@ -21,8 +21,25 @@ tools {
         dir('frontend') {
           bat 'npm run test'
         }
+      
+	  
+	  
+	  }
+	  stage('build') {
+      steps {
+        dir('frontend') {
+          script {
+		   bat 'npm run build'
+          
+            
+              
+            }
+          }
+         
+        }
       }
-    }
-    }
-}
+    
+    
+	}//Fin stages
+}//Fin Pipeline
 
