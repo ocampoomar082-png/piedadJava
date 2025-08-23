@@ -5,7 +5,7 @@ tools {
     nodejs "node"
   }
 
-    stages {
+     stages {
         stage('install') {
       steps {
 	    deleteDir()
@@ -15,7 +15,7 @@ tools {
         }
         }
       }
-    }
+    
         stage('Saludo2') {
             steps {
                 echo '¡Hola desde Jenki ns!'
@@ -23,3 +23,4 @@ tools {
         }
     }
 }
+
