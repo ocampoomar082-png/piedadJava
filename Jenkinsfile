@@ -16,11 +16,13 @@ tools {
         }
       }
     
-        stage('Saludo2') {
-            steps {
-                echo '¡Hola desde Jenki ns!'
-            }
+          stage('Unit-test') {
+      steps {
+        dir('frontend') {
+          bat 'npm run test'
         }
+      }
+    }
     }
 }
 
