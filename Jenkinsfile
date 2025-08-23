@@ -27,12 +27,12 @@ tools {
 	 stage('build') {
       steps {
         dir('frontend') {
-          script {
+         
 		  
 		   sh 'npm run build'
            
            
-            }
+            
           }
          
         }
