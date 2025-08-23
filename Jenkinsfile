@@ -5,7 +5,7 @@ tools {
     nodejs "node"
   }
 
-     stages {
+ stages {
         stage('install') {
       steps {
 	    deleteDir()
@@ -27,18 +27,13 @@ tools {
 	 stage('build') {
       steps {
         dir('frontend') {
+         bat 'npm run build'
+       }
          
-		  
-		   sh 'npm run build'
-           
-           
-            
-          }
-         
-        }
-      }
+     }
+   }
     
     
-}
+  }
 }
 
