@@ -7,5 +7,10 @@ pipeline {
                 echo '¡Hola desde Jenki ns! 🚀'
             }
         }
+        stage('Saludo2') {
+            steps {
+                echo '¡Hola desde Jenki ns! 🚀'
+            }
+        }
     }
 }
