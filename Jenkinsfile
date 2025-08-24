@@ -29,6 +29,8 @@ parameters {
         }
       }
     }//Fin Test Unitarios
+	
+	stage('Build') {
       steps {
         dir('frontend') {
          bat 'npm run build'
@@ -36,7 +38,8 @@ parameters {
          
      }
 	 
-   }//Fin compilacion
+   }//Fin Build
+   
    stage('Contenerizado') {
             steps {
                 script {
@@ -104,7 +107,7 @@ parameters {
             }
         } // Fin Contenerizado
     
-    
+  } 
   }
-}
+ 
 
