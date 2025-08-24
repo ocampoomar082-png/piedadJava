@@ -12,7 +12,7 @@ parameters {
   }
 
  stages {
-        stage('install') {
+        stage('GitClone') {
       steps {
 	    deleteDir()
         git branch: 'main', credentialsId: 'github_1', url: 'https://github.com/ocampoomar082-png/piedadJava.git'
@@ -20,7 +20,7 @@ parameters {
           bat 'npm install'
         }
         }
-      }
+      }//Fin Git Clone
     
       stage('TestUnitarios') {
       steps {
