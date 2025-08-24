@@ -7,7 +7,7 @@ tools {
 parameters {
     string(name: 'container_name', defaultValue: 'appmonte_test', description: 'Nombre del contenedor de docker.')
     string(name: 'image_name', defaultValue: 'montetest_img', description: 'Nombre de la imagene docker.')
-    string(name: 'tag_image', defaultValue: 'lts', description: 'Tag de la imagen de la página.')
+    string(name: 'tag_image', defaultValue: '0.0.1', description: 'Tag de la imagen de la página.')
  
   }
 
