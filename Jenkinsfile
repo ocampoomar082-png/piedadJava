@@ -12,17 +12,25 @@ parameters {
   }
 
  stages {
-        stage('GitClone') {
+    stage('GitClone') {
       steps {
 	    deleteDir()
         git branch: 'main', credentialsId: 'github_1', url: 'https://github.com/ocampoomar082-png/piedadJava.git'
+	
+        }
+      }//Fin Git Clone
+	  
+	stage('NPMInstall') {
+      steps {
+	
 		 dir('frontend') {
           bat 'npm install'
         }
         }
-      }//Fin Git Clone
+      }//Fin install npm
     
-      stage('TestUnitarios') {
+    
+    stage('TestUnitarios') {
       steps {
         dir('frontend') {
           bat 'npm run test'
@@ -40,7 +48,7 @@ parameters {
 	 
    }//Fin Build
    
-   stage('Contenerizado') {
+    stage('Contenerizado') {
             steps {
                 script {
                     FAILED_STAGE = env.STAGE_NAME
