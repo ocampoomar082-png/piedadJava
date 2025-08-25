@@ -167,7 +167,7 @@ parameters {
     
 	stage('FinPipeline') {
       steps {
-       echo 'Pipeline Terminado con Exitol'
+       echo 'Pipeline Terminado con'
          
      }
 	 
