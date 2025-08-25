@@ -7,7 +7,7 @@ tools {
 parameters {
     string(name: 'container_name', defaultValue: 'appmonte_test', description: 'Nombre del contenedor de docker.')
     string(name: 'image_name', defaultValue: 'montetest_img', description: 'Nombre de la imagene docker.')
-    string(name: 'tag_image', defaultValue: '0.0.4', description: 'Tag de la imagen de la pagina.')
+    string(name: 'tag_image', defaultValue: '0.0.5', description: 'Tag de la imagen de la pagina.')
     string(name: 'user_docker', defaultValue: 'ocampoomar082', description: 'usuario docker')
  
   }
@@ -98,7 +98,7 @@ parameters {
                                                 cd /home/vboxuser/monteimages/${container_name}/frontend/ && \\
                                                 docker build -t ${user_docker}/${image_name}:${tag_image}  .
                                                 docker push ${user_docker}/${image_name}:${tag_image}
-                                                docker save ${image_name}:${tag_image} -o ${image_name}:${tag_image}.tar
+                                                docker save ${user_docker}/${image_name}:${tag_image} -o ${image_name}_${tag_image}.tar
                                             """
                                         )
                                     ],
