@@ -6,8 +6,8 @@ tools {
   }
 parameters {
     string(name: 'container_name', defaultValue: 'appmonte_test', description: 'Nombre del contenedor de docker.')
-    string(name: 'image_name', defaultValue: 'appmonte', description: 'Nombre de la imagene docker.')
-    string(name: 'tag_image', defaultValue: '0.0.3', description: 'Tag de la imagen de la pagina.')
+    string(name: 'image_name', defaultValue: 'montetest_img', description: 'Nombre de la imagene docker.')
+    string(name: 'tag_image', defaultValue: '0.0.4', description: 'Tag de la imagen de la pagina.')
     string(name: 'user_docker', defaultValue: 'ocampoomar082', description: 'usuario docker')
  
   }
@@ -111,7 +111,7 @@ parameters {
                     } catch (err) {
                         echo err.getMessage()
                         String logData = currentBuild.rawBuild.getLog(50) // ojo: X no estaba definido
-                        error "Pipeline aborted: No se concluyÃƒÂ³ la construcciÃƒÂ³n del microservicio"
+                        error "Pipeline aborted: No se concluya la construccion del microservicio"
                     }
                 }
             }
@@ -165,7 +165,7 @@ parameters {
             }
         } // Fin Push Docker
     
-	stage('EndPipeline') {
+	stage('FinPipeline') {
       steps {
        echo 'Pipeline Terminado con Exito'
          
