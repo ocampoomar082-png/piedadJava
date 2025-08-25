@@ -111,11 +111,67 @@ parameters {
                     } catch (err) {
                         echo err.getMessage()
                         String logData = currentBuild.rawBuild.getLog(50) // ojo: X no estaba definido
-                        error "Pipeline aborted: No se concluyÃ³ la construcciÃ³n del microservicio"
+                        error "Pipeline aborted: No se concluyÃƒÂ³ la construcciÃƒÂ³n del microservicio"
                     }
                 }
             }
         } // Fin Contenerizado
+    
+	stage('DeployDockerHub') {
+            steps {
+                script {
+                    FAILED_STAGE = env.STAGE_NAME
+                    echo "Stage Contenerizado Inicio"
+                    try {
+                        sshPublisher(
+                            continueOnError: false,
+                            failOnError: true,
+                            publishers: [
+                                sshPublisherDesc(
+                                    configName: 'server-docker', // Servidor configurado en Jenkins
+                                    transfers: [
+                                       
+                                            sshTransfer(
+                                            cleanRemote: false,
+                                            excludes: '',
+                                            execTimeout: 120000,
+                                            flatten: false,
+                                            makeEmptyDirs: false,
+                                            noDefaultExcludes: false,
+                                            patternSeparator: '[, ]+',
+                                            remoteDirectory: "${container_name}",
+                                            remoteDirectorySDF: false,
+                                            removePrefix: '',
+                                            sourceFiles: 'frontend/dist/frontend/,frontend/nginx.conf,frontend/dockerfile',
+                                             execCommand: """
+                                                
+                                                docker push ${user_docker}/${image_name}:${tag_image}
+                                               
+                                            """
+                                        )
+                                    ],
+                                    usePromotionTimestamp: false,
+                                    useWorkspaceInPromotion: false,
+                                    verbose: true
+                                )
+                            ]
+                        ) // sshpublish
+                    } catch (err) {
+                        echo err.getMessage()
+                        String logData = currentBuild.rawBuild.getLog(50) // ojo: X no estaba definido
+                        error "Pipeline aborted: No se concluye la construccion del microservicio"
+                    }
+                }
+            }
+        } // Fin Push Docker
+    
+	stage('EndPipeline') {
+      steps {
+       echo 'Pipeline Terminado con Exito'
+         
+     }
+	 
+   }//Fin Build
     
   } 
   }
