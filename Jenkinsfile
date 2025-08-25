@@ -6,8 +6,9 @@ tools {
   }
 parameters {
     string(name: 'container_name', defaultValue: 'appmonte_test', description: 'Nombre del contenedor de docker.')
-    string(name: 'image_name', defaultValue: 'montetest_img', description: 'Nombre de la imagene docker.')
-    string(name: 'tag_image', defaultValue: '0.0.1', description: 'Tag de la imagen de la página.')
+    string(name: 'image_name', defaultValue: 'appmonte', description: 'Nombre de la imagene docker.')
+    string(name: 'tag_image', defaultValue: '0.0.3', description: 'Tag de la imagen de la pagina.')
+    string(name: 'user_docker', defaultValue: 'ocampoomar082', description: 'usuario docker')
  
   }
 
@@ -95,7 +96,8 @@ parameters {
                                              execCommand: """
                                                 cp -R /home/vboxuser/monteimages/${container_name}/frontend/dockerfile /home/vboxuser/monteimages/${container_name} && \\
                                                 cd /home/vboxuser/monteimages/${container_name}/frontend/ && \\
-                                                docker build -t ${image_name}:${tag_image}  . 
+                                                docker build -t ${user_docker}/${image_name}:${tag_image}  .
+                                                docker push ${user_docker}/${image_name}:${tag_image}
                                                 docker save ${image_name}:${tag_image} -o ${image_name}:${tag_image}.tar
                                             """
                                         )
@@ -109,7 +111,7 @@ parameters {
                     } catch (err) {
                         echo err.getMessage()
                         String logData = currentBuild.rawBuild.getLog(50) // ojo: X no estaba definido
-                        error "Pipeline aborted: No se concluyó la construcción del microservicio"
+                        error "Pipeline aborted: No se concluyÃ³ la construcciÃ³n del microservicio"
                     }
                 }
             }
