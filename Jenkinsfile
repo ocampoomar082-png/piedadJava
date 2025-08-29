@@ -98,8 +98,9 @@ parameters {
                                                 cd /home/vboxuser/monteimages/${container_name}/frontend/ && \\
                                                 docker build -t ${user_docker}/${image_name}:${tag_image}  .
                                                 docker push ${user_docker}/${image_name}:${tag_image}
-                                                docker save ${user_docker}/${image_name}:${tag_image} -o ${image_name}_${tag_image}.tar
+                                                
                                             """
+											// Agregar cuando se desee generar .tar -->docker save ${user_docker}/${image_name}:${tag_image} -o ${image_name}_${tag_image}.tar
                                         )
                                     ],
                                     usePromotionTimestamp: false,
